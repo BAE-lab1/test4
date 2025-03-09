@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모바일 청첩장</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        h1, h2, p {
+            color: #333;
+        }
+        .wedding-date {
+            font-size: 1.2em;
+            color: #ff6f61;
+            font-weight: bold;
+        }
+        .map-link {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: white;
+            background: #ff6f61;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .rsvp {
+            margin-top: 20px;
+        }
+        .rsvp input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        .rsvp button {
+            padding: 10px;
+            background: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .message-board {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>저희 결혼합니다 💕</h1>
+        <p>소중한 분들을 초대합니다.</p>
+        <p class="wedding-date">2025년 5월 25일 (일) 오후 2시</p>
+        <p>📍 서울 웨딩홀 3층 그랜드홀</p>
+        <a href="https://maps.app.goo.gl/sample" class="map-link">📍 지도 보기</a>
+        <hr>
+        <h2>신랑 & 신부</h2>
+        <p>신랑: 홍길동 (010-1234-5678)</p>
+        <p>신부: 김영희 (010-8765-4321)</p>
+        <hr>
+        <div class="rsvp">
+            <h2>축하 메시지 남기기</h2>
+            <input type="text" id="guestMessage" placeholder="축하 메시지를 입력하세요">
+            <button onclick="submitMessage()">등록</button>
+        </div>
+        <div class="message-board" id="messageBoard">
+            <h3>축하 메시지</h3>
+            <p>🎉 여러분의 축하 메시지를 기다립니다!</p>
+        </div>
+    </div>
+    <script>
+        function submitMessage() {
+            let message = document.getElementById('guestMessage').value;
+            if (message.trim() !== "") {
+                let messageBoard = document.getElementById('messageBoard');
+                let newMessage = document.createElement('p');
+                newMessage.textContent = `💌 ${message}`;
+                messageBoard.appendChild(newMessage);
+                document.getElementById('guestMessage').value = "";
+            }
+        }
+    </script>
+</body>
+</html>
