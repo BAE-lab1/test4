@@ -59,7 +59,14 @@
             background: #f1f1f1;
             border-radius: 5px;
         }
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
     </style>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b16755c8f9f09312bdbb85e522ef3051"></script>
 </head>
 <body>
     <div class="container">
@@ -67,11 +74,13 @@
         <p>소중한 분들을 초대합니다.</p>
         <p class="wedding-date">2025년 5월 25일 (일) 오후 2시</p>
         <p>📍 서울 웨딩홀 3층 그랜드홀</p>
-        <a href="https://maps.app.goo.gl/sample" class="map-link">📍 지도 보기</a>
         <hr>
         <h2>신랑 & 신부</h2>
         <p>신랑: 홍길동 (010-1234-5678)</p>
         <p>신부: 김영희 (010-8765-4321)</p>
+        <hr>
+        <h2>📍 오시는 길</h2>
+        <div id="map"></div>
         <hr>
         <div class="rsvp">
             <h2>축하 메시지 남기기</h2>
@@ -94,29 +103,24 @@
                 document.getElementById('guestMessage').value = "";
             }
         }
+
+        // 카카오 지도 API
+        function initMap() {
+            var container = document.getElementById('map'); 
+            var options = {
+                center: new kakao.maps.LatLng(37.5665, 126.9780), // 서울 시청 좌표 (위치 변경 가능)
+                level: 3 
+            };
+            
+            var map = new kakao.maps.Map(container, options);
+
+            var marker = new kakao.maps.Marker({
+                position: map.getCenter()
+            });
+            marker.setMap(map);
+        }
+
+        window.onload = initMap;
     </script>
-</body>
-<body>
-    <!-- 카카오 지도 API 추가 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b16755c8f9f09312bdbb85e522ef3051"></script>
-
-<!-- 지도 표시할 div -->
-<div id="map" style="width:100%;height:400px;"></div>
-
-<script>
-    var container = document.getElementById('map'); 
-    var options = {
-        center: new kakao.maps.LatLng(37.5665, 126.9780), // (위도, 경도) -> 서울 예시
-        level: 3 // 지도 확대 레벨
-    };
-
-    var map = new kakao.maps.Map(container, options);
-
-    // 마커 추가
-    var marker = new kakao.maps.Marker({
-        position: map.getCenter()
-    });
-    marker.setMap(map);
-</script>
 </body>
 </html>
